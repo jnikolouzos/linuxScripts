@@ -1,9 +1,9 @@
 # linuxScripts
 
 **battery**
+
 This script adds notifications for laptop battery level.
-To use it, add the following to cron.
-* * * * *       XDG_RUNTIME_DIR=/run/user/$(id -u) /bin/sh /the-path-to-your-script/battery.sh
+To use it, add the following to cron: * * * * *       XDG_RUNTIME_DIR=/run/user/$(id -u) /bin/sh /the-path-to-your-script/battery.sh
 
 If you don't know how to do it, follow these steps:
 1. on shell type: croptab -e
