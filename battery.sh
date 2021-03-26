@@ -68,9 +68,6 @@ fi
 #if the battery is charging, we reset the notification flags. if not, we check the percentage and notify the user.
 if [ "$STATE" = "discharging" ]
 then
-
-    echo "${PRC}"
-
     if [ "$PRC" = "25" ] && [ "$NOTIFIED25" = "false" ] 
     then
         NOTIFIED25=true
