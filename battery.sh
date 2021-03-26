@@ -1,6 +1,6 @@
 #!/bin/bash
 #reads the battery percentage
-PRC=$(upower -d | grep -m 1 percentage: | cut -c 25-27 | xargs)
+PRC=$(upower -d | grep -m 1 percentage: | cut -c 25-28 | xargs)
 
 #if it's less than 10 it has also % sign
 if [[ $PRC == *"%"* ]]; then
