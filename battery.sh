@@ -4,7 +4,12 @@ PRC=$(upower -d | grep -m 1 percentage: | cut -c 25-28 | xargs)
 
 #if it's less than 10 it has also % sign
 if [[ $PRC == *"%"* ]]; then
-    PRC=$(echo $PRC | cut -c 1-1)
+    len=`echo $PRC | wc -c`
+    if [[ $len == 4 ]]; then
+        PRC=$(echo $PRC | cut -c 1-2)
+    else
+        PRC=$(echo $PRC | cut -c 1-1)
+    fi
 fi
 
 #reads the if the battery is charging
