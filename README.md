@@ -12,7 +12,7 @@ If you don't know how to do it, follow these steps:
 4. type: sudo chmod +x /the-path-to-your-script/battery.sh (in my case: sudo chmod +x /home/jim/Desktop/battery.sh)
 5. on shell type: croptab -e
 6. go to bottom on a new line
-7. paste this: * * * * *       XDG_RUNTIME_DIR=/run/user/$(id -u) /bin/sh /the-path-to-your-script/battery.sh
+7. paste this: * * * * *       env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus /the-path-to-your-script/battery.sh >/the-path-to-your-script/battery.log 2>&1
 8. rename the-path-to-your-script with the path that you've stored the battery.sh
 9. ctrl + X
 10. y
