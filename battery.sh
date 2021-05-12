@@ -1,7 +1,9 @@
 #!/bin/bash
+
+export DISPLAY=:1
+
 #reads the battery percentage
 PRC=$(upower -d | grep -m 1 percentage: | cut -c 25-28 | xargs)
-
 #if it's less than 10 it has also % sign
 if [[ $PRC == *"%"* ]]; then
     len=`echo $PRC | wc -c`
@@ -9,9 +11,8 @@ if [[ $PRC == *"%"* ]]; then
         PRC=$(echo $PRC | cut -c 1-2)
     else
         PRC=$(echo $PRC | cut -c 1-1)
-    fi
+     fi
 fi
-
 #reads the if the battery is charging
 STATE=$(upower -d | grep -m 1 state: | cut -c 25-37 | xargs)
 
@@ -41,7 +42,7 @@ updatePropertiesFile() {
 
 #a notification for low battery
 notifyLow() {
-    /usr/bin/notify-send --urgency=NORMAL --icon=battery-low 'Battery level low' "The battery is on ${PRC}%."
+    /usr/bin/notify-send --urgency=CRITICAL --icon=battery-low 'Battery level low' "The battery is on ${PRC}%."
     updatePropertiesFile
 }
 
@@ -50,7 +51,6 @@ notifyHigh() {
     /usr/bin/notify-send --urgency=CRITICAL --icon=battery-caution 'Battery level very low' "The battery is on ${PRC}%. Plug the charger!"
     updatePropertiesFile
 }
-
 
 #a notification for critically low battery
 notifyCritical() {
